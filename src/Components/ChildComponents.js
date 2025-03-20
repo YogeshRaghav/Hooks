@@ -4,6 +4,7 @@ import React, { memo } from 'react'
 
 const ChildComponents = memo((props) => {
     console.log('child re rendered')
+    
   return (
     <div onClick = {props.handleClick}>
       <button>{props.buttonName}</button>

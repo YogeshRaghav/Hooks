@@ -1,20 +1,22 @@
 import './App.css';
-import Debouncing from './Components/Debouncing';
+// import Throttling from './Components/Throttling';
+// import Debouncing from './Components/Debouncing';
 // import StopWatchUsingRef from './Components/StopWatchUsingRef';
 // import UseRef from './Components/UseRef';
 // import UseCallback from './Components/UseCallback';
-// import UseMemo from './Components/UseMemo';
+import UseMemo from './Components/UseMemo';
 
 
 
 function App() {
   return (
     <div className="App">
-      {/* <UseMemo/> */}
+      <UseMemo/>
       {/* <UseCallback/> */}
       {/* <UseRef/> */}
       {/* <StopWatchUsingRef/> */}
-      <Debouncing/>
+      {/* <Debouncing/> */}
+      {/* <Throttling/> */}
     </div>
   );
 }

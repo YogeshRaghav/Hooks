@@ -23,6 +23,9 @@ const Debouncing = () => {
             else{
                 setFilterData(data)
             }
+            // if(inp){
+            //     console.log('searchinf for', inp)
+            // }
         },1000)
 
         return () => clearTimeout(timer)
