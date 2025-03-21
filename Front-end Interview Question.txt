@@ -1,0 +1,169 @@
+
+REACT INTRVIEW QUESTIONS
+
+Q1. Virtual DOM vs Actual DOMs
+Q2. Higher Order Components?
+Q3. LifeCycle Method?
+Q4. Components & Type of Components?
+Q5. Hooks?  useReducer, useMemo, useRef, useCallbacks?
+Q6. How to update a component in every second?
+Q7. What is refs and can we use this in functional components?
+Q8. Pass data from child to parent components?
+Q9. React Router?
+Q10. Pass data between sibling components.
+Q11. Redux? and What is Redux saga.
+Q12. Diff. between Redux and Context Api 
+Q13. What is zest? Advantage of zest over jasmine
+Q14. React Server Components ?
+Q15. How to format JSX in react?
+Q16. Techinqiues to optimize React app performance? 
+Q17. Features of React?
+Q18. States and Props?
+Q19. What is pure and impure component?
+Q20. What is Lazy Loading?
+Q21. Why we fetch API inside useEffect?
+Q22. Current version of ReactJs
+Q23. Which Lifecycle method is called by which hook?
+Q24. What is design patterns?
+Q25. What is Prop Drilling?  - Suppose Sending Data from a component to d component even b and c comp is not using data or require but we still sending
+Q26. Controlled and Uncontrolled Components? Depend upon how this the values of these things are changing for example if i have an input tag and i m not doing anything like i m not controlling the value using the value attribute 
+Q27. Can browser read jsx directly?
+Q28. How virtual dom works?
+Q29. Cloures? Real Time use case - we can keep the number of users/visiter visiting our websites using counter
+Q30. How can we connect redux to our application?
+Q31. What is React Suspense and React Lazy ? 
+Q32. What are the differences between client side and server side rendering ?
+Q32. What is debouncing and throttling?
+Q33. How do you stop unnecessary Re-renders?
+
+
+JAVASCRIPT iNTERVIEW QUESTIONS 
+
+Q1. Async/Await
+Q2. Promises
+Q3. Map/Filter/Reduce Functions
+Q4. Callback function? Why do we use callback functions
+Q5. What is Lexical Scoping
+Q6. WeakMap & WeakSet?
+Q7  What are polyphils?
+Q8  Hoisting regarding variable? 	
+Q9. How js engine works?
+Q10 What is Event loop and how it works? 
+Q11 Callback Hell?
+Q12 Higher Order Functions?
+Q13 Saas?
+Q14. What is prototypal inheritance?
+Q15 Event Delegation?
+
+
+CSS INTERVIEW QUESTIONS
+
+Q1. Types of position in CSS?
+Q2. Current version of CSS?
+Q3. Margin vs Padding?
+Q4. Flexbox  ? Justify/Allign Items
+Q5. Grid?
+Q6 Difference between em vs Rem
+Q7 Flex direction column how allign-items behave?
+Q8 flex-grow, flex-shrink, and flex-basis?
+Q9 write media query that worked on the screen size less than 600px?
+
+<<<<------------------------------------->>>>
+JavaScript executes code in the following order:
+✅ 1. Execute Synchronous Code (Call Stack - Main Thread)
+✅ 2. Process Microtasks (Promise.then, MutationObserver)
+✅ 3. Process Macrotasks (setTimeout, setInterval, setImmediate, I/O tasks)
+
+Callback Hell Example :- 
+function a(){
+    console.log('a is called')
+    
+}
+
+function b(callback){
+    console.log('b is called')
+    callback()
+}
+
+function c(callback){
+    console.log('c is called')
+    callback()
+}
+
+function d(callback){
+    console.log('d is called')
+    callback()
+}
+
+b(() => {
+    c(() => {
+        d(() => {
+            a()
+        })
+    })
+})
+
+Q. User Input with Debouncing Effect
+import "./styles.css";
+import { useState, useEffect } from "react";
+
+export default function App() {
+  const [data, setData] = useState([]);
+  const [search, setSearch] = useState("");
+  const [filteredData, setFilteredData] = useState([]);
+  const api = "https://jsonplaceholder.typicode.com/posts";
+
+  useEffect(() => {
+    const getApiData = async () => {
+      try {
+        const res = await fetch(api);
+        const resData = await res.json();
+        setData(resData);
+        setFilteredData(resData); // Set initial filtered data
+      } catch (error) {
+        console.log("Error while fetching data", error);
+      }
+    };
+
+    getApiData();
+  }, []);
+
+  // Debouncing effect
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (search) {
+        setFilteredData(
+          data.filter((item) =>
+            item.title.toLowerCase().includes(search.toLowerCase())
+          )
+        );
+      } else {
+        setFilteredData(data);
+      }
+    }, 500); // 500ms delay
+
+    return () => clearTimeout(timer); // Cleanup function
+  }, [search, data]);
+
+  return (
+    <div className="App">
+      <h1>Fetched Data with Search</h1>
+      <input
+        type="text"
+        placeholder="Search by title..."
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+      />
+      <ul>
+        {filteredData.map((item) => (
+          <li key={item.id}>
+            <h3>{item.title}</h3>
+            <p>{item.body}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+ 
+
